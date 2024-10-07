@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties Settlement</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"> 
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/heebo" type="text/css"/> 
+    <link rel="icon" type="image/png" href="{% static 'files/logo (3).png' %}"/>
+
+
+</head>
+<body>  
+    <div id="preloader">
+        <img src="{% static 'files/preloader.gif' %}" alt="Loading...">
+    </div>   
+
+    <div class="content">  
+
+        <div class="sitename"> 
+            <p>Properties Settlement</p> 
+        </div>   
+
+        <div class="description">
+            <p>Embark on a seamless inheritance settlement journey with Property's Settlement.  
+                Our online platform employs the Sealed Bid method, guaranteeing a fair and transparent distribution process.  
+                Experience efficiency, clarity, and stress-free property settlements like never before.</p>
+        </div>
+
+        <!-- CONTENT GOES HERE -->   
+        <div class="logo">
+            <img onclick="window.location.href='{% url 'home' %}'" src="{% static 'files/logo (4).png' %}" alt="logo">
+        </div>  
+        <a class="register" href="register/"><button>  Register</button></a>
+        </div> 
+
+         <section class="wave"></section> 
+         <div class="container">  
+            <p>Developers</p>
+            
+            <div class="devimgs devimgs1">
+                <a href="https://www.facebook.com/canlas.yul">
+                    <h5>Yul</h5>
+                    <img src="{% static 'files/yul.jpg' %}" alt="Yul">
+                </a>
+            </div>
+    
+            <div class="devimgs devimgs2">
+                <a href="https://www.facebook.com/EriiSsi">
+                    <h5>Ericka</h5>
+                    <img src="{% static 'files/ericka.jpg' %}" alt="Ericka">
+                </a>
+            </div>
+            
+            <div class="devimgs devimgs3">
+                <a href="https://www.facebook.com/graceanne.garchitorena/">
+                    <h5>Grace</h5>
+                    <img src="{% static 'files/grace.jpg' %}" alt="Grace">
+                </a>
+            </div>
+            
+            <div class="devimgs devimgs4">
+                <a href="https://www.facebook.com/debidabadu">
+                    <h5>David</h5>
+                    <img src="{% static 'files/david.jpg' %}" alt="David">
+                </a>
+            </div>
+            
+            <div class="devimgs devimgs5">
+                <a href="https://www.facebook.com/EnzoPogi.09">
+                    <h5>Lorenzo</h5>
+                    <img src="{% static 'files/enzo.png' %}" alt="Lorenzo">
+                </a>
+            </div> 
+        </div>  
+            
+            <img src="{% static 'files/logo (3).png' %}" class="logo3">
+        
+        <div class="bottompage">   
+           <p>Find us on:</p> 
+            <a href="https://www.facebook.com/debidabadu"><img src="{% static 'files/fb.png' %}"></a>
+            <img src="{% static 'files/gmail.png' %}">    
+            <img src="{% static 'files/x.png' %}">  
+        </div>  
+
+</body>
+</html>
+
+<script src="{% static 'js/main.js' %}"></script>

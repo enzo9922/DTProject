@@ -1,0 +1,22 @@
+<!DOCTYPE html> 
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/heebo" type="text/css"/>  
+    <link rel="icon" type="image/png" href="{% static 'files/logo (3).png' %}"/>
+    <title>Success Message</title>
+    
+    <link rel="stylesheet" href="{% static 'css/successMsg.css' %}">
+</head>
+<body>
+    <div class="success-message-container"> 
+        <img class="check" src="{% static 'files/check.gif' %}"> 
+        <h1>All Done!</h1> 
+        <p>{{ success_message }}</p> 
+        <button class="okay-button" onclick="window.location.href='{% url 'home' %}'">Ok</button>
+    </div> 
+
+</body>
+</html>

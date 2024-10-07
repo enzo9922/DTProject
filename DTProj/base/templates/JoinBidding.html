@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Bidding</title>
+    <link rel="stylesheet" href="{% static 'css/JoinBidding.css' %}">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/heebo" type="text/css"/> 
+    <script src="https://kit.fontawesome.com/b6ecc94894.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="{% static 'files/logo (3).png' %}"/>
+
+    
+</head>
+ 
+<body> 
+    <section class="wave">   
+
+        <div class="header"> 
+            <img  class="logo" onclick="window.location.href='{% url 'home' %}'" src="{% static 'files/logo (4).png' %}" alt="logo">
+            <p onclick="window.location.href='{% url 'home' %}'">Properties Settlement</p> 
+        </div>
+
+        <div id="preloader">
+            <img src="{% static 'files/preloader.gif' %}" alt="Loading...">
+        </div>
+
+        <div class="content">
+
+            <div class="joinContainer">
+                <h1>Hello, {{ participant.first_name }}!</h1>
+                <p>Welcome! You've been invited to Properties Settlement. Please input your unique password to begin your seamless property settlement.</p>
+
+                <form id="passwordForm" method="post" action="{% url 'agreement'  bidding_url=participant.IDParticipants %}"> {% csrf_token %}
+                    
+                    <input type="hidden" name="participant_password" value="{{ participant.password }}">
+                    <input type="hidden" name="participant" value="{{ participant.IDParticipants }}">
+
+                    <div class="passDiv">
+                        <input type="password" id="password" name="password" required>
+                        <span>Password</span>
+                        <div class="eye-icon" onclick="togglePassword()"><i class="fa-solid fa-eye" id="eye-icon"></i></div>
+                    </div>
+
+                    <div class="btn">
+                        <a href="/"><button type="button" onclick="Cancel()">Cancel</button></a>
+                        <button type="submit">Continue</button>
+                    </div>
+                    
+                    <script>
+                        {% if messages %}
+                            var errorMessage = "{% for message in messages %}{{ message }}\n{% endfor %}";
+                            alert(errorMessage);
+                        {% endif %}
+                    </script>
+
+                </form>
+
+            </div>
+    
+        </div>
+
+        <span class="loader"><span class="loader-inner"></span></span>
+    </section>
+</body>
+</html>
+<script src="{% static 'js/JoinBidding.js' %}"></script>

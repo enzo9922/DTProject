@@ -1,0 +1,74 @@
+<!DOCTYPE html> 
+{% load static %} 
+<html> 
+    <head>  
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/heebo" type="text/css"/>
+        <link rel="icon" type="image/png" href="{% static 'files/logo (3).png' %}"/>
+        <title> Terms of Service Section In HTML and CSS </title> 
+
+    </head>  
+
+    <body>   
+
+        <section class="wave1">  
+
+        <div class="header"> 
+            <img  class="logo2" onclick="window.location.href='{% url 'home' %}'" src="{% static 'files/logo (4).png' %}" alt="logo">
+            <p onclick="window.location.href='{% url 'home' %}'">Properties Settlement</p> 
+        </div> 
+        
+        <div id="preloader">
+            <img src="{% static 'files/preloader.gif' %}" alt="Loading...">
+        </div>
+
+        <div class="wrapper flex_align_justify">
+            <div class="Agreement">
+                <div class="agr_item agr_head flex_align_justify">
+                    <div class="logo1 flex_align_justify">
+                        <img class="logo2" src="{% static 'files/logo (4).png' %}" alt="logo">
+                    </div> 
+                    
+                    <div class="text1">
+                        <h2>Agreement Terms and Condition</h2>
+                        <p>Last updated on December 1 2023</p>
+                    </div>
+                </div> 
+    
+                <div class="agr_item agr_body">
+                    <ol>
+                        <li>
+                            <h3>Terms of use</h3>
+                            <p>By accessing Property's Settlement, you agree to follow our guidelines, ensuring a smooth inheritance settlement journey through our user-friendly online platform.</p>
+                        </li>
+                        <li>
+                            <h3>Intellectual property rights</h3>
+                            <p>All content and features on Property's Settlement are our intellectual property, and you are granted a limited license to use them; any unauthorized use is strictly prohibited.</p>
+                        </li>
+                        <li>
+                            <h3>Prohibited activities</h3>
+                            <p>Users are forbidden from engaging in activities such as unauthorized access, distribution of harmful code, privacy rights violation, impersonation, or any action compromising the platform's integrity.</p>
+                        </li>
+                        <li>
+                            <h3>Termination clause</h3>
+                            <p>Property's Settlement reserves the right to terminate or suspend user accounts at our discretion for reasons including guideline violations, suspicious activities, or non-compliance.</p>
+                        </li>
+                        <li>
+                            <h3>Governing law</h3>
+                            <p>These terms are governed by the laws of the Republic of the Philippines, specifically the Civil Code of the Philippines (Republic Act No. 386), and any disputes will be subject to the exclusive jurisdiction of the courts in the Philippines.</p>
+                        </li>
+                    </ol>
+                </div>
+                <div class="agr_item agr_foot flex_align">
+                    <a href="/"><button class="decline_btn">Decline</button></a>
+                    <a href="{% url 'auction' bidding_url=participant.IDParticipants %}"><button class="accept_btn">Accept</button></a>
+                </div>
+            </div>
+        </div>
+        </section>
+    </body>
+    </html>
+    
+    <script src="{% static 'js/main.js' %}"></script>

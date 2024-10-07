@@ -1,0 +1,593 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}  
+
+.wave {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #393E46, #6D9886, #F2E7D5);
+    background-size: 300% 300%;
+    animation: color 20s ease-in-out infinite;
+    z-index: 1; 
+    margin-top: -60px;
+}  
+
+.header { 
+    height: 12%;
+    display: flex;
+    align-items: center;
+    margin-left: 90px;
+    position:absolute;
+    z-index: 2; 
+}  
+
+.header p {
+    font-size: 20px;
+    color: #F7F7F7;
+    margin-top: 40px;
+    font-family: 'HeeboRegular';
+    font-weight: bold;
+    font-style: normal;
+    opacity: 0.8;
+    transition: margin-left 1s ease; 
+    cursor: pointer;
+}  
+
+.header:hover .logo {
+    transform: translateY(-50%) translateX(20px);
+}
+
+.header:hover p {
+    margin-left: -100px; 
+    margin-top: 60px;    
+
+    background: linear-gradient(90deg, #393E46, #6D9886, #F2E7D5,#F7F7F7);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.logo { 
+    height: 40px; 
+    width: 40px; 
+    
+    margin-right: 10px; 
+    margin-top: 40px;
+    position: relative;
+    transition: transform 1s ease;
+    cursor: pointer;
+} 
+ 
+@keyframes color{ 
+    0%{ 
+        background-position: 0 50%;
+    } 
+    50%{ 
+        background-position: 100% 50%;
+    } 
+    100%{ 
+        background-position: 0 50%;
+    }
+} 
+
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #3C2A21;
+    opacity: 75%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+     
+    
+}
+
+#preloader img {
+    width: 150px; 
+    height: auto; 
+    opacity: 100%
+} 
+
+/* BODY STARTS HERE */
+
+.content {
+    z-index: 1;
+    width: 100%;  
+    font-family: 'HeeboRegular';
+    font-weight:normal;
+    font-style: normal;  
+    padding-top: 50px;
+}
+
+.content h1 {
+    text-align: center;
+    font-size: 40px; 
+    margin-top: 40px; 
+    font-family: 'HeeboRegular';
+    font-weight:bold;
+    font-style: normal; 
+    color: #F7F7F7;
+}
+
+
+.submitBtn, .resetBtn {
+    margin: 20px auto;
+    background-color: #393E46;
+    color: #F7F7F7;
+    height: 50px;
+    width: 130px;
+    font-size: 16px;
+    border-radius: 50px;
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;  
+    margin-left: 40%; 
+    border: 1px solid rgb(14, 13, 13);
+}
+
+.resetBtn{
+    margin-left: 15px;
+}
+
+.submitBtn{
+    margin-right: 15px;
+}
+
+button:hover {
+    background-color: #6D9886;
+    color: #F2E7D5;
+    transform: scale(0.96);
+}
+
+button:active{
+    transform: scale(0.90);
+}
+ 
+/* PARTICIPANTS AND PROPERTIES CONTAINER */
+.wrapper{
+    display: grid;
+    grid-template-columns: 400px 1fr;
+}
+
+.partCont, 
+.propCont {
+    height: 180px;
+    width: 320px;
+    background: linear-gradient(90deg,#F2E7D5, #F7F7F7);
+    border-radius: 10px;
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    margin: 40px auto;
+    
+}
+
+.propCont{
+    margin:20px auto;
+}
+
+.partCont img, 
+.propCont img{
+    height:30px;
+    width: 30px;
+    margin-right: 15px;  
+}
+
+.partCont label, 
+.propCont label {
+    padding-left: 5px;
+    font-size: 20px;
+    margin-bottom: 30px; 
+    margin-top: -10px; 
+}
+
+.partCont p, 
+.propCont p{
+    text-align:left;
+    padding-left: 65px;
+    font-size: 15px;
+}
+
+.minimum{
+    margin-top: 3px;
+    margin-bottom: 5px;
+    color: #393E46;
+}
+
+#participantCount, 
+#propertiesCount{
+    height:25px;
+    width: 150px;
+    margin-left: 65px;
+    border-radius: 10px;
+    background-color: #393E46;
+    color:#F7F7F7;
+    text-align: center;
+}
+
+.participant-container input:focus,
+.property-container input:focus{
+    border: 2px solid #393E46; 
+    outline: none; 
+}
+
+input:focus{
+    border: 2px solid #393E46; 
+    outline: none; 
+}
+
+
+/* PARTICIPANTS */
+.participants-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px auto 25px 50px;
+    align-items: center;
+}
+
+.participant-container {
+    background: linear-gradient(90deg,#F2E7D5, #F7F7F7);
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.participant-container input {
+    display: block;
+    margin-bottom: 12px;
+    background-color: #F7F7F7;
+    border-radius: 5px;
+    border: 1.5px solid #393E46;
+    height: 25px;
+    width:220px;
+    font-size: 12px;
+    padding:5px;
+    z-index: 1;
+    transition: all 0.1s ease;
+}
+
+.participant-container h3{
+    padding-bottom: 15px;
+    color: #393E46;
+} 
+
+.participant-container h2{
+    padding-bottom: 15px;
+    color: #393E46;
+}
+
+.hideButton{
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    height: 25px;
+    width: 220px;
+    margin-bottom: 5px;
+    background-color: #393E46;
+    color: #d8d1c8;
+    border: 1px solid #393E46;
+    box-shadow: 0 2px 2px #393E46; 
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.participant-container input::placeholder{
+    letter-spacing: 0.1em;
+    font-size: 10px;
+}
+
+/* PROPERTIES */
+.properties-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px auto auto 50px;
+}
+
+.propHead, 
+.minBidHead{
+    height: 35px;
+    border: 1px solid #000; 
+    border-radius: 5px;
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(90deg,#393E46, #6D9886);
+    text-align: center;
+    padding-top: 7px;
+    margin-bottom: 12px;
+    color: #F7F7F7;
+    transition: all 0.3s ease; 
+
+    backdrop-filter: blur(40px);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.propHead, .property-name{
+    width: 350px;
+    margin-left: 10px;
+}
+
+.minBidHead, .property-min{
+    width: 250px;
+    margin-left: 30px;
+}
+
+.property-name, .property-min{
+    height: 32px;
+    margin-bottom: 5px;
+    padding:8px;
+    background-color: #F7F7F7;
+    border-radius: 5px;
+    border: 1px solid #000;
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.1s ease;
+}
+
+.property-container input::placeholder{
+    letter-spacing: 0.1em;
+    font-size: 11px;
+}
+
+.property-delete{
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 15px;
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.fa-solid.fa-trash{
+    color:#F7F7F7;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.fa-solid.fa-trash:hover {
+    color: #393E46;
+    transform: scale(0.92);
+}
+
+
+/* FOR RESPONSIVENESS */
+
+@media (min-width: 1400px) {
+
+    .participant-container input, .hideButton{
+        height: 28px;
+        width:250px;
+        font-size: 14px;
+    }
+
+    .properties-container, .participants-container{
+        margin-left: 70px;
+    }
+
+    .participant-container input::placeholder{
+        font-size: 11px;  
+    }
+
+    .property-container input::placeholder{
+        font-size: 12px;
+    }
+
+    .propHead, .minBidHead{
+        height: 40px;
+        padding-top: 10px;
+    }
+
+    .propHead, .property-name{
+        width: 380px;
+        margin-left: 10px;
+    }
+
+    .minBidHead, .property-min{
+        width: 280px;
+        margin-left: 10px;
+    }
+
+    .property-name, .property-min{
+        height: 35px;
+        font-size: 15px;
+    }
+
+}
+
+@media(max-width:1150px){
+
+    .propHead, .property-name{
+        width: 300px;
+        margin-left: 10px;
+    }
+
+    .minBidHead, .property-min{
+        width: 200px;
+        margin-left: 10px;
+    }
+
+    .minBidHead, .propHead{
+        height:auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+@media(max-width:1024px){
+
+    .propHead, .property-name{
+        width: 280px;
+        margin-left: 10px;
+    }
+
+    .minBidHead, .property-min{
+        width: 180px;
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 1000px){
+
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .properties-container{
+        margin-left: 10px;
+    }
+
+    .participants-container{
+        margin-left: auto;
+    }
+
+    .participants-container, .properties-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .propHead, .property-name{
+        width: 350px;
+
+    }
+    
+    .minBidHead, .property-min{
+        width: 250px;
+    }
+
+    .propHead, .minBidHead{
+        height: 35px;
+    }
+
+    .propHead{
+        margin-left: -20px;
+    }
+    
+    .submitBtn{
+        margin-left: 300px;
+    }
+}
+
+@media(max-width: 880px){
+    .submitBtn{
+        margin-left: 250px;
+    }
+}
+
+@media(max-width: 720px){
+
+    .propHead, .property-name{
+        width: 300px;
+
+    }
+    
+    .minBidHead, .property-min{
+        width: 200px;
+    }
+
+    .propHead, .minBidHead{
+        height: auto;
+    }
+
+    .submitBtn{
+        margin-left: 180px;
+    }
+}
+
+@media(max-width: 650px){
+
+    .participant-container input, .hideButton{
+        height: 25px;
+        width:185px;
+    }
+
+    .submitBtn, .resetBtn {
+        height: 40px; 
+        width: 120px;
+    }
+
+    .submitBtn{
+        margin-left: 170px;
+    }
+
+}
+
+@media(max-width:640px){
+
+    .properties-container{
+        margin-left: 2px;
+    }
+    
+    .propHead, .property-name{
+        width: 250px;
+    }
+    
+    .minBidHead, .property-min{
+        width: 150px;
+    }
+
+    .propHead, .minBidHead{
+        height: auto;
+    }
+
+    .submitBtn, .resetBtn {
+        font-size: 14px; 
+        height: 40px; 
+        width: 120px;
+    }
+
+    .submitBtn{
+        margin-left: 130px;
+    }
+}
+
+@media(max-width:475px){ 
+
+    .participant-container input, .hideButton{
+        height: 20px;
+        width:160px;
+    }
+
+    .properties-container{
+        margin-left: 2px;
+    }
+    
+    .propHead, .property-name{
+        width: 200px;
+    }
+    
+    .minBidHead, .property-min{
+        width: 100px;
+    }
+
+    .propHead, .minBidHead{
+        height: auto;
+        font-size: 14px;
+    }
+
+    .home button{
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+
+    h1{
+        font-size: 16;
+    }
+
+}

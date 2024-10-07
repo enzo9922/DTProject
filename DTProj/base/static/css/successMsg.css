@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, #6D9886, #F2E7D5);
+}
+
+.check {
+    margin-top: -120px;
+    width: 500px;
+    height: 300px;
+    margin-left: -90px;
+}
+
+.success-message-container {
+    width: 300px;
+    height: 250px;
+    margin: 100px auto;
+    padding: 100px;
+    background: linear-gradient(90deg, #393E46, #6D9886, #F2E7D5);
+    border-radius: 10px;
+    color: #F7F7F7;
+    text-align: center;
+    font-family: 'HeeboRegular';
+    font-weight: normal;
+    font-style: normal;
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.4);
+    background-size: 300% 300%;
+    animation: color 20s ease-in-out infinite;
+}
+
+.success-message-container h1 {
+    margin-top: -50px;
+}
+
+@keyframes color {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+.okay-button {
+    background-color: #393E46;
+    color: #F7F7F7;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.okay-button:hover {
+    background-color: #393E46;
+    color: #F2E7D5;
+    transform: scale(0.96);
+}

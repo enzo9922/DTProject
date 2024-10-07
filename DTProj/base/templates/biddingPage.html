@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidding Room</title>
+    <link rel="stylesheet" href="{% static 'css/biddingPage.css' %}">  
+    <script src="https://kit.fontawesome.com/b6ecc94894.js" crossorigin="anonymous"></script> 
+    <script src="{% static 'js/Register.js' %}"></script>  
+    <script src="{% static 'js/biddingPage.js' %}"></script>  
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/heebo" type="text/css"/> 
+    <link rel="icon" type="image/png" href="{% static 'files/logo (3).png' %}">
+</head> 
+
+<body>
+    <section class="wave">  
+        <div class="header"> 
+            <img  class="logo" onclick="window.location.href='{% url 'home' %}'" src="{% static 'files/logo (4).png' %}" alt="logo">
+            <p onclick="window.location.href='{% url 'home' %}'">Properties Settlement</p> 
+        </div>
+
+        <div id="preloader">
+            <img src="{% static 'files/preloader.gif' %}" alt="Loading...">
+        </div>
+
+        <form id="bidForm" method="post" action="{% url 'auction' bidding_url=participant.IDParticipants %}">
+            {% csrf_token %}
+            <div class="content">
+                <h2>Place your Bid</h2>
+                <div id="propertyNames">
+                    {% for property in properties %}
+                        <div class="property-container">
+                            <div class="property-box">
+                                <span class="count">{{ forloop.counter }}</span>
+                                <h3 class="propHead">{{ property.property_name }}</h3>
+                                <p>Minimum Bid: {% if property.min_bid is not None %}${{ property.min_bid }}{% else %}No minimum{% endif %}</p>
+                                <input type="hidden" name="item_id" value="{{ item.id }}">
+                                <input type="number" class="bid-input" step="0.01" name="bid_amount_{{ property.id }}" 
+                                    placeholder="Enter Your Bid" required
+                                    {% if property.min_bid is not None %} data-min-bid="{{ property.min_bid }}"{% endif %}>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="timer-container">
+                    <div class="timer" id="timer" style="position: fixed; top: 30px; right: 60px; z-index: 1000; color: #F2E7D5; font-family: 'HeeboRegular'; font-weight: bold; text-align: center; background: linear-gradient(90deg,#393E46, #6D9886);
+                    box-shadow: 0 4px 8px black; border-radius: 25px; padding: 15px;">
+                        <span id="countdown" style="font-size: 35px;">Timer</span>
+                        <div style="display: flex; flex-direction: row; margin-top: 5px;"> 
+                            <span id="minText" style="font-size: 15px; margin-right: 5px;">min</span>
+                            <span id="secText" style="font-size: 15px; margin-left: 5px;">seconds</span>
+                        </div>
+                    </div>
+                </div>
+                
+            
+                <script>
+                    {% if messages %}
+                        var errorMessage = "{% for message in messages %}{{ message }}\n{% endfor %}";
+                        alert(errorMessage);
+                    {% endif %}
+                
+                    var formSubmitted = false;
+
+                    function startTimer(duration, display) {
+                        let timer = duration, minutes, seconds;
+                        let intervalId = setInterval(function () {
+                            minutes = parseInt(timer / 60, 10);
+                            seconds = parseInt(timer % 60, 10);
+
+                            minutes = minutes < 10 ? "0" + minutes : minutes;
+                            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                            document.getElementById('countdown').textContent = minutes + ":" + seconds;
+
+                            if (--timer < 0) {
+                                timer = duration;
+                                clearInterval(intervalId);
+
+                                // Check if the form has already been submitted
+                                if (!formSubmitted) {
+                                    // Loop through bid inputs and set empty ones to their respective min_bid or 0
+                                    document.querySelectorAll('.bid-input').forEach(function (input) {
+                                        if (input.value.trim() === '') {
+                                            // Get the item-specific minBidValue or default to 0
+                                            var itemMinBidValue = parseFloat(input.dataset.minBid) || 0;
+                                            input.value = isNaN(itemMinBidValue) ? 0 : itemMinBidValue;
+                                        }
+                                    });
+
+                                    // Set the flag to prevent multiple submissions
+                                    formSubmitted = true;
+
+                                    // Auto-submit the form when the timer reaches zero
+                                    try {
+                                        document.getElementById('bidForm').submit();
+                                    } catch (error) {
+                                        if (error.message.includes("MultipleObjectsReturned")) {
+                                            console.error("MultipleObjectsReturned error. Please handle this case appropriately.");
+                                            alert("There was an error submitting the form. Please try again.");
+                                        } else {
+                                            console.error("Error submitting the form:", error.message);
+                                            alert("There was an error submitting the form. Please try again.");
+                                        }
+                                    }
+                                }
+                            }
+                        }, 1000);
+
+                        return intervalId;
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        setTimeout(function () {
+                            let numberOfItems = {% if properties %}{{ properties|length }}{% else %}0{% endif %};
+                            let totalDuration = numberOfItems * 60; // 1 minute per item
+                            let display = document.getElementById('timer');
+                            let intervalId = startTimer(totalDuration);
+                        }, 2500);
+                    });
+                </script>
+                
+                
+                <button class='submitBtn' type="submit">Submit</button>
+        </form>
+    </section>
+</body>
+</html>

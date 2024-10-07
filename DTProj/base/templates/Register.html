@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidding Registration</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Register.css' %}">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/heebo" type="text/css"/> 
+    <script src="https://kit.fontawesome.com/b6ecc94894.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="{% static 'files/logo (3).png' %}"/>
+
+</head>
+<body>
+    <section class="wave">  
+        <div class="header"> 
+            <img  class="logo" onclick="window.location.href='{% url 'home' %}'" src="{% static 'files/logo (4).png' %}" alt="logo">
+            <p onclick="window.location.href='{% url 'home' %}'">Properties Settlement</p> 
+        </div>  
+
+        <div class="content"> 
+            <div id="preloader">
+                <img src="{% static 'files/preloader.gif' %}" alt="Loading...">
+            </div>
+            <h1>Bidding Registration</h1>
+            
+            <form id="registrationForm" method="POST" action="{% url 'submit_form' %}"> {% csrf_token %}
+
+                <div class="wrapper">
+                    <div id="partCont" class="partCont">
+                        <img src="{% static 'files/addPartiIcon.png' %}" alt="Participants Icon">
+                        <label for="participantCount">Add Participants</label>
+                        <p>Input the number of heiresses participating in the bidding. </p> 
+                        <p class= 'minimum'>Mininum: 2 Participants</p>
+                        <input type="number" id="participantCount" min="2" step="1" value= "3" onchange="validateParticipantCount()">
+                    </div>
+                    <div id="participantsContainer" class="participants-container"></div>
+                    
+                    <div class="propCont">
+                        <img src="{% static 'files/addPropIcon.png' %}" alt="Properties Icon">
+                        <label for="propertiesCount">Valued Properties</label>
+                        <p>Input the quantity of valued properties eligible for bidding.</p>
+                        <p class= 'minimum'>Mininum: 1 Property</p>
+                        <input type="number" id="propertiesCount" min="1" max="16" step="1" value= "2" onchange="validatePropertyCount()">
+                    </div>
+                    <div id="propertiesContainer" class="properties-container"></div>
+                </div>
+                
+                <!-- Added a hidden field to store JSON data -->
+                <input type="hidden" name="participants" id="id_participants" />
+                <input type="hidden" name="properties" id="id_properties" /> 
+
+            </form>
+
+        </div>  
+
+        <button class="submitBtn" type="button" onclick="submitForm()">Submit</button>
+        <button class= 'resetBtn' type="button" onclick="resetForm()">Reset</button> 
+        
+        {% comment %} <script>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                        var successMessage = "{{ message }}\n";
+                        alert(successMessage);
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </script> {% endcomment %}
+
+    </section>
+    <script src="{% static 'js/Register.js' %}"></script> 
+    
+</body>
+</html>
